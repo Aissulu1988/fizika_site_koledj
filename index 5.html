@@ -1,0 +1,134 @@
+<!doctype html><html lang="kk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Физика сабақтары</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@600;800&display=swap">
+</head><body><style>
+/* Layout: кобальт түн аспаны, алтын ою жолағы; бастапқы экран екі үлкен 3D батырма, әрі қарай екі бөлім */
+:root{color-scheme:dark;
+--night:#0a1440;--deep:#101f63;--panel:#16297c;--line:#3450b8;--gold:#ffc53d;--gold2:#e8920c;
+--cyan:#2fe0e6;--pink:#ff5d8f;--text:#f5f7ff;--muted:#b9c5f2;
+--display:"Unbounded","Golos Text","Segoe UI",sans-serif;--body:"Golos Text","Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1100px 620px at 82% -8%,#2746d8 0,transparent 62%),radial-gradient(800px 520px at 0 8%,#0d7f97 0,transparent 60%),var(--night);background-attachment:fixed;color:var(--text);font:400 16px/1.5 var(--body)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--night)}
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band{height:44px;background-repeat:repeat-x;background-position:center;background-size:58px 44px;opacity:.9}
+.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:32px;align-items:center;padding-block:44px 28px}
+.eyebrow{margin:0 0 12px;color:var(--cyan);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:14px}
+h1{margin:0;font:800 clamp(38px,7.2vw,82px)/1.04 var(--display);text-wrap:balance;background:linear-gradient(180deg,#fff3c4 8%,var(--gold) 52%,var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 5px 0 #7a3f00)}
+.lead{max-width:34em;margin:18px 0 0;font-size:clamp(17px,2.2vw,20px);color:var(--muted)}
+.teacher{display:grid;gap:2px;max-width:34em;margin-top:22px;padding:14px 18px;border-radius:14px;background:#16297ccc;border:2px solid var(--gold)}
+.teacher small{color:var(--cyan);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.teacher strong{font:800 clamp(18px,2.4vw,23px)/1.25 var(--display)}
+.teacher span{color:var(--muted)}
+.atom{position:relative;width:min(100%,320px);aspect-ratio:1;margin:auto;perspective:900px}
+.atom i{position:absolute;inset:6%;border-radius:50%;border:5px solid var(--gold);box-shadow:0 0 24px #ffc53d88,inset 0 0 18px #ffc53d55;transform-style:preserve-3d}
+.atom i:nth-child(1){transform:rotateX(72deg) rotateZ(0)}
+.atom i:nth-child(2){transform:rotateX(72deg) rotateY(60deg);border-color:var(--cyan);box-shadow:0 0 24px #2fe0e688}
+.atom i:nth-child(3){transform:rotateX(72deg) rotateY(-60deg);border-color:var(--pink);box-shadow:0 0 24px #ff5d8f88}
+.atom b{position:absolute;left:50%;top:50%;width:30%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle at 34% 28%,#fff6d6,var(--gold) 38%,#c96a00 78%,#7a3f00);box-shadow:0 18px 34px #0008}
+.atom svg{position:absolute;inset:0;animation:spin 22s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.doors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;padding-block:8px 34px}
+.door{display:grid;gap:6px;text-align:left;padding:24px 26px;border:0;border-radius:22px;cursor:pointer;font:inherit;color:#10195a;background:linear-gradient(160deg,#fff0b8,var(--gold) 55%,var(--gold2));box-shadow:0 9px 0 #8c4c00,0 22px 34px #0007;transition:transform .12s,box-shadow .12s}
+.door.alt{color:#04282e;background:linear-gradient(160deg,#c9fbfb,var(--cyan) 55%,#0ea4b5);box-shadow:0 9px 0 #06606c,0 22px 34px #0007}
+.door:hover{transform:translateY(-3px)}
+.door:active{transform:translateY(7px);box-shadow:0 2px 0 #8c4c00}
+.door.alt:active{box-shadow:0 2px 0 #06606c}
+.door[aria-pressed="true"]{outline:4px solid #fff;outline-offset:3px}
+.door strong{font:800 clamp(21px,3.4vw,32px)/1.15 var(--display)}
+.door span{font-weight:500}
+:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.tools{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:grid;gap:12px;padding-block:14px;background:#0a1440f2;border-block:1px solid var(--line)}
+.search{width:100%;padding:13px 16px;border-radius:12px;border:2px solid var(--line);background:var(--deep);color:var(--text);font:inherit}
+.search::placeholder{color:var(--muted)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin}
+.chip{flex:none;padding:8px 14px;border-radius:999px;border:2px solid var(--line);background:transparent;color:var(--text);font:600 14px var(--body);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#10195a}
+section{padding-block:18px 56px}
+h2{margin:30px 0 14px;font:800 clamp(20px,2.8vw,26px)/1.25 var(--display);color:var(--gold);text-wrap:balance}
+.count{font:600 15px var(--body);color:var(--muted);margin-left:8px}
+.rows{display:grid;gap:10px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;padding:15px 18px;background:var(--deep);border:1px solid var(--line);border-radius:14px}
+.row p{margin:0;font-weight:600;font-size:17px;min-width:0}
+.dl{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:11px;background:linear-gradient(180deg,#ffdc7a,var(--gold));box-shadow:0 4px 0 #8c4c00;color:#10195a;font-weight:700;text-decoration:none;white-space:nowrap}
+.dl:hover{filter:brightness(1.08)}
+.dl:active{transform:translateY(3px);box-shadow:0 1px 0 #8c4c00}
+.dl svg{width:18px;height:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,160px),1fr));gap:14px}
+.card{display:grid;grid-template-rows:auto 1fr;background:var(--deep);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-decoration:none;transition:transform .14s,border-color .14s}
+.card:hover{transform:translateY(-4px);border-color:var(--gold)}
+.thumb{position:relative;aspect-ratio:3/4;max-width:100%;background:linear-gradient(150deg,#2746d8,#0d7f97);display:grid;place-items:center;overflow:hidden}
+.thumb svg{width:58%;opacity:.55}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+.meta{padding:12px 14px 14px;display:grid;gap:4px;align-content:start}
+.meta small{color:var(--cyan);font-weight:600;letter-spacing:.03em}
+.meta strong{font-weight:600;line-height:1.3}
+.none{padding:30px 0;color:var(--muted)}
+footer{padding-block:0 30px;color:var(--muted);font-size:14px}
+@media (max-width:760px){.hero{grid-template-columns:minmax(0,1fr);padding-block:28px 16px}.atom{width:200px;grid-row:1}.doors{grid-template-columns:minmax(0,1fr)}.row{grid-template-columns:minmax(0,1fr)}.dl{justify-self:start}}
+@media (prefers-reduced-motion:reduce){.atom svg{animation:none}html{scroll-behavior:auto}.door,.card{transition:none}}
+</style>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="horn" viewBox="-4 0 88 74"><path d="M0 40C0 18 18 6 34 12c12 5 14 22 3 27-8 3-15-4-12-11M80 40C80 18 62 6 46 12c-12 5-14 22-3 27 8 3 15-4 12-11M40 40V70" fill="none" stroke="#ffc53d" stroke-width="6" stroke-linecap="round"/></symbol>
+<symbol id="down" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 20h16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+<div class="band" id="band"></div>
+<header class="wrap">
+<div class="hero">
+<div>
+<p class="eyebrow">Колледжге арналған</p>
+<h1>Физика сабақтары</h1>
+<p class="lead">Механикадан астрономияға дейінгі толық курс: қысқа мерзімді жоспарлар, тірек-сызбалар мен жұмыс парақтары бір жерде.</p>
+<div class="teacher"><small>Оқытушы</small><strong>Шекртова Гульмира Алтаевна</strong><span>О.Көшеков атындағы Атырау аграрлы-техникалық колледжі</span></div>
+</div>
+<div class="atom" aria-hidden="true"><i></i><i></i><i></i><b></b>
+<svg viewBox="0 0 320 320"><circle cx="304" cy="160" r="11" fill="#fff3c4"/><circle cx="88" cy="36" r="9" fill="#2fe0e6"/><circle cx="88" cy="284" r="9" fill="#ff5d8f"/></svg>
+</div>
+</div>
+<div class="doors">
+<button class="door" id="go-ksp" type="button" aria-pressed="false"><strong>ҚМЖ</strong><span id="n-k"></span></button>
+<button class="door alt" id="go-mat" type="button" aria-pressed="false"><strong>Сабақ материалдары</strong><span id="n-m"></span></button>
+</div>
+</header>
+<main id="main" hidden>
+<div class="tools"><div class="wrap" style="display:grid;gap:12px">
+<label class="sr" for="q" hidden>Тақырып іздеу</label>
+<input class="search" id="q" type="search" placeholder="Тақырып бойынша іздеу" autocomplete="off">
+<div class="chips" id="chips"></div>
+</div></div>
+<section class="wrap" id="out" aria-live="polite"></section>
+</main>
+<div class="band"></div>
+
+<script id="d" type="application/json">{"M": ["Механика", "Молекулалық физика және термодинамика", "Электр және магнетизм", "Тербелістер және толқындар", "Оптика", "Кванттық және ядролық физика", "Астрономия"], "K": [[0, "Дене қозғалысы кинематикасының теңдеулері мен графиктері", "1EzLqjYs2xZBho3dgk0mTsEl-CiqWgJzN"], [0, "Теңүдемелі қозғалыс кинематикасының негізгі теңдеулері мен ұғымдары. Инвариантты және салыстырмалы физикалық шамалар", "1mskau7ATQ2glgccDefcB3fGlIjXU8Jl0"], [0, "Галилейдің салыстырмалылық принципі. Қисық сызықты қозғалыс кинематикасы", "1PWRqHa1McSXEBFIztKkJrPYE5g8324Iu"], [0, "Күштер. Күштерді қосу. Ньютон заңдары. Бүкіләлемдік тартылыс заңы", "1c-IxCKuix3wDUBsbpQWt6VkuSNnXy28g"], [0, "Массалар центрі. Тепе-теңдік түрлері", "1sJ9_d1n8MsCTfV-oNHpc4uwsJ2PIs5LE"], [0, "Импульстің және механикалық энергияның сақталу заңдары", "1PvPxm56crrA04qQ9OVKDJXlS71vayfRR"], [0, "Сұйықтар мен газдардың ламинарлы және турбулентті ағымы", "1H1s3GngdG9a0Me83z96i69p793ezw2V6"], [1, "МКТ негізгі қағидалары. Термодинамикалық параметрлер. Идеал газ. Газдардың МКТ негізгі теңдеуі", "1RKJQavoNLnnVQ8qa3ZwKlbJMi8rZ3Ih4"], [1, "Идеал газ күйінің теңдеуі. Изопроцестер. Адиабаталық процесс", "1Ah4HSpb_KoUXTSYNx651L6ESwFoBSn3M"], [1, "Газ заңдарын сандық және графиктік есептерді шығаруда қолдану", "1nwnCOV5l8vP5dWxtktMTSEv0acuoi9ik"], [1, "Термодинамиканың бірінші заңы. Адиабаталық процесс", "1efdAAxFlA-epzkfBze4TtxvSagn1r9Xx"], [1, "Қайтымды және қайтымсыз процестер. Термодинамиканың екінші заңы. Карно циклі", "1Yi5gJEZyp7JQRjEwkasygixcG31EBjIy"], [1, "Қаныққан және қанықпаған бу. Ауаның ылғалдылығы. Жұғу және қылтүтіктік құбылыстар", "1RAHMr5BJUA_FyOgIdhxJ32snRRgMuwgB"], [1, "Кристалл және аморф денелер. Қатты денелердің механикалық қасиеттері", "1PZSpWbmdlhJXWBx6osFGoTlESgQGJnTg"], [2, "Электр өрісінің кернеулігі. Электр өрісінің потенциалдар айырымы", "1-q245ABaDmSmiPfHez830qm7MIF3dKX6"], [2, "Электр сыйымдылығы; конденсаторлар; электр өрісінің энергиясы", "1zgTqa-DiTVp-mAcq9aForeHHXMxZTIB8"], [2, "Электр тогы. Ток көзінің ЭҚК мен ішкі кедергісі. Толық тізбек үшін Ом заңы", "1vIkVyVT5Yt-8CbR7meAL7Ws-S2XWdYtM"], [2, "Электр тогының жұмысы мен қуаты. Джоуль-Ленц заңы. Ток көзінің ПӘК", "1MaKoUZ4vCX1fq4zU29w5CtKPS9NmOUgl"], [2, "Металдардағы, жартылай өткізгіштердегі және электролиттердегі электр тогы", "16AIh64jJp-byYdddvC6ERlydv27EaYv9"], [2, "Электролиз заңдары. Электролиттердің электр өткізгіштігі", "1pj3HsrYIvZTbhFlBgx3NiFownxP8gTP4"], [2, "Газдардағы электр тогы; вакуумдағы электр тогы (1-нұсқа)", "1MZmcFqxAeFlsErniMZUvQGf2C1yNmJH0"], [2, "Газдардағы электр тогы; вакуумдағы электр тогы (2-нұсқа)", "1m9S_hqOK4jLADbkZlqH3eBhB-Kk2Qv3y"], [2, "Магнит өрісі; Ампер күші; Лоренц күші; заттың магниттік қасиеттері", "1WEoysGG4IjFFfEABNQ03WBsJAlCBUZ0V"], [2, "Магнит ағыны; электромагниттік индукция құбылысы; электромагниттік индукция заңы", "1OxIScNGUWCgVZyKHY5p_rfQ4ksVLEHUq"], [2, "Ленц ережесі. Магнит өрісінің энергиясы. Электр қозғалтқыш және тұрақты ток генераторы", "15fTi9NBRvZZ751QAKQJktowaKT6FVjvc"], [3, "Гармоникалық тербелістердің теңдеулері мен графиктері", "1KulmRx59nEaLJk2j7eNFsnOoXYXAp-mb"], [3, "Еркін және еріксіз электромагниттік тербелістер", "1XrjgMO4eMp5H-dYqcbQltZjExVmeci_o"], [3, "Айнымалы ток генераторы; еріксіз электромагниттік тербелістер", "1-YQsyXWErsDBA9zOSb3vFC6Q3tPUXBLP"], [3, "Айнымалы токты сипаттайтын физикалық шамалар. Электр тізбегіндегі кернеулер резонансы", "1pkU6K3aE6c0fh_WCvuttBJWVLwHUwt-b"], [3, "Айнымалы ток тізбегіндегі қуат; электр тізбегіндегі кернеу резонансы", "1mHIRT4PZyp68HTk5JeL-ig2dIpFjTEq3"], [3, "Электр энергиясын өндіру, тасымалдау және қолдану, трансформатор", "1iD5e3SGAGQg8JK5bldCshsKJAeppuPb6"], [3, "Қазақстандағы және дүние жүзіндегі электр энергиясын өндіру және қолдану", "1ZtUDGkyaVgpaLMKFPTUbmaH1AhSpg5TR"], [3, "Электромагниттік толқындарды сәулелендіру және қабылдау", "1LacmWRcrvpi1LB_kWTbQtzMUrIMZ3XxR"], [3, "Аналогтық-цифрлық түрлендірулер; байланыс арналары; байланыс құралдары", "1btbxj4Dra0JBrGGYU8h5OlCl23-umyGt"], [3, "Ауадағы дыбыс", "1RFVzdIUpckPcXvNPJWPsARO5HdmyYcRc"], [4, "Жарықтың интерференциясы, дифракциясы, поляризациясы. Дифракциялық торлар", "1oO6dEPAQkwI7U8SxiuO165rNfNW5nOMX"], [4, "Дифракциялық тордың көмегімен жарықтың толқын ұзындығын анықтау", "147LI26IhhFzpQRbU8pj7Noax3mjFG6Ur"], [4, "Жарықтың поляризациясы. Жарықтың поляризациясын бақылау", "1dHSj2MMAn2aySEJdjffvV4HhSUQa9uHh"], [4, "Жарықтың интерференция, дифракция және поляризация құбылыстары арқылы электромагниттік табиғатын дәлелдеу", "1eQaFF9v4BzCeTnqTSoY5kaY8lDm9B2FB"], [4, "Оптиканың геометриялық заңдары. Жазық параллель пластинадағы сыну. Толық ішкі шағылысу. Оптикалық құралдар", "1Va5CXOt-13TY0ODsZqQHEeAbAdeJyC0L"], [4, "Шынының сыну көрсеткішін анықтау", "1igtpAO5SpArZhJs7t4e2wgxWSn2OoqWx"], [5, "Жарықтың корпускулалық-толқындық табиғаты. Сәулелену түрлері. Спектрлер. Электромагниттік сәулелену шкаласы", "1fKGyN-RgEGbLkzqRqV0XcDTKCCQKMU0N"], [5, "Фотоэффект. Жарық қысымы. Жарықтың химиялық әрекеті. Лазерлер. Голография. Фотография. Томография", "1bH8R2RIXiXMiAqVbxEDXxS5ig3upR50X"], [5, "Атом ядросы; ядролық реакциялар; радиоактивті сәулелердің биологиялық әсері", "17U3yq3hpZ-c-XaeXPdBVfTAVGiNPgPY0"], [5, "Табиғи радиоактивтілік; радиоактивті ыдырау заңы; жасанды радиоактивтілік", "1XZm2ZaYLhXDoqqFfH1-vP1-pcov_RDe1"], [5, "Радиациядан қорғану; ядролық реактор; ядролық энергетика; термоядролық реакциялар", "1C8t65QJCmhe1AtshfSyNhOYexG2thgbQ"], [5, "Нанотехнологияның негізгі жетістіктері, наноматериалдарды дамытудың өзекті мәселелері және даму кезеңдері", "10CD7spP99fNVlo2_XB9XkzvB3hKbOOP5"], [6, "Жұлдыздар әлемі; галактикалар; Үлкен жарылыс теориясы; Ғаламның кеңеюі; Ғаламдағы өмір мен ақыл", "1x0S8rol_Fy_N6YZE0O4mn7_f-bibrlaH"], [6, "Қорытынды сабақ. Тест", "1RgoYZJne8QgdTziFrEoPtiC_Uc4qNAu4"]], "P": [[0, "Күштер. Ньютон заңдары. Бүкіләлемдік тартылыс", "Тірек-сызба", "1-L4pMJ9U3AmzoNyYl4N3JPZnjasviigQ"], [0, "Массалар центрі. Тепе-теңдік түрлері", "Жұмыс парағы", "14DaUtIsDf4XGozmL49Bb-Sz8DTo7DGoO"], [0, "Абсолют қатты дененің инерция моменті", "Жұмыс парағы", "1LEEGJzQ4PNUERblvsKwpVuxmFMCPDlqJ"], [0, "Импульстің және механикалық энергияның сақталу заңдары (қысқаша)", "Тірек-сызба", "1FkZqQkACjFizC8zifJYBqT_L8oEVNIYb"], [0, "Импульстің және механикалық энергияның сақталу заңдары (1-нұсқа)", "Тірек-сызба", "1aGBwsktNxemE5wgsGsOwdmp9hI9fGlBt"], [0, "Импульстің және механикалық энергияның сақталу заңдары (2-нұсқа)", "Тірек-сызба", "1d7GQv59vfFtGXhNxpMFZsWQAqJVOsUwV"], [0, "Ламинарлы және турбулентті ағым", "Тірек-сызба", "1okNpMIs90ANarvxkgkIeXWNNwnkXBhcI"], [1, "МКТ негізгі қағидалары", "Тірек-сызба", "1j3kfraxUtvqAos4NTTM38NFVXTD5tN_0"], [1, "Газ заңдарын есептерде қолдану", "Тірек-сызба", "1cqZVvMJya4a9ZAoQU9R5Iznuo466mI5F"], [1, "Қаныққан және қанықпаған бу", "Тірек-сызба", "1Yx-eYwHz8YD1I2ZTm3QVVHHSIy9bEAq8"], [2, "Электр сыйымдылығы", "Тірек-сызба", "1krirSRWLrTaCSoBb0LD4ZjWUCPBmhip3"], [2, "Конденсаторлар", "Тірек-сызба", "191xmK63Hsg1v33h1aqdj-vOTaKW4GoMt"], [2, "Электр тогының жұмысы мен қуаты (1-нұсқа)", "Тірек-сызба", "1AHEZ-p8NNwpUZEESam223F3pIVzMsvL-"], [2, "Электр тогының жұмысы мен қуаты (2-нұсқа)", "Тірек-сызба", "1i9Qp4dh736FdtUoKYSMwfFmg2Aymhaut"], [2, "Металдардағы электр тогы", "Тірек-сызба", "1_bWxMVGEjKSRVK_pM8JM9wmnr-H_ZYrL"], [2, "Электролиттердегі электр тогы", "Тірек-сызба", "1DGTxV28vPSWbkcKRgqlsCrB7764ZDrI1"], [2, "Магнит өрісі және оның әсері", "Тірек-сызба", "1sxG8HFmbKoLA2LLfr7-L_jZMpYMfk3aB"], [2, "Магнит ағыны", "Тірек-сызба", "17R6lSksic1SMiFlvmBhQ90sxi_UR653r"], [2, "Электромагниттік индукция құбылысы", "Тірек-сызба", "1XrQDFYsJlaotH43FZXwtoYJqeOI752bM"], [2, "Ленц ережесі", "Тірек-сызба", "1G12rh5dEJLSDy2HxmhE-p6Ijjn_W9PlO"], [2, "Магнит өрісінің энергиясы", "Тірек-сызба", "14wnY_U4pGwKaMdt-dueWoOgoqwn0kryH"], [3, "Гармоникалық тербелістердің теңдеулері мен графиктері", "Жұмыс парағы", "1JYMbCRVziZgjtvUBx37Xora4CHwrF-Jn"], [3, "Еркін және еріксіз электромагниттік тербелістер", "Жұмыс парағы", "1nay0MHLuym9B5oSn1Iu4R5apLN_oO3Ws"], [3, "Еркін және еріксіз электромагниттік тербелістер: мәтіндік есептер", "Жұмыс парағы", "15g9b4izJZ2C0jwtBhQ4AC3G-mM6YUfcb"], [3, "Резонанс", "Жұмыс парағы", "1EhZSr4PwPtqja-hWhECwofdWVHEnMIMZ"], [3, "Электр тізбегіндегі кернеулердің резонансы", "Тірек-сызба", "1Ttbk7aOfK6FdntoOXIt-xjPgJOtdlo99"], [3, "Электр тізбегіндегі кернеулердің резонансы", "Жұмыс парағы", "1LVp3UtDppQboecngpSte50s8d761XdNN"], [3, "Айнымалы ток тізбегіндегі қуат; кернеу резонансы", "Жұмыс парағы", "1QPRiSKvFB2ZBqsnaBa-MkQ4nruNNumI7"], [3, "Қазақстандағы және дүние жүзіндегі электр энергиясы", "Тірек-сызба", "1c3Bb7UYe42UvFrEYp-UDJD0VlI6eRX34"], [3, "Электромагниттік толқындарды сәулелендіру және қабылдау", "Тірек-сызба", "1DpcC2TB2vwlaBwfYUkPQl-Ljbs4VVnRX"], [3, "Аналогтық-цифрлық түрлендірулер; байланыс арналары мен құралдары", "Тірек-сызба", "1iq8PWJ_XAr9wNa-mRV-8bCSNywPG_AaP"], [4, "Жарықтың сыну заңы", "Жұмыс парағы", "1QUGxC3JsFe-XeGu96afLayKwbAsYevrC"], [4, "Дифракциялық тормен толқын ұзындығын анықтау", "Жұмыс парағы", "1a0e21WCRqZz1PAVtAbq-6O8TMt3P8NCv"], [4, "Жарықтың поляризациясын бақылау", "Жұмыс парағы", "1uOfVLH9OnaVBS9z3cLhdZQjPLKh0sxh7"], [4, "Жарықтың түзу таралу заңы: сұрақ-жауап", "Жұмыс парағы", "1yTxqKabFAuX-vs6AHXCeG5cIB--4BX2r"], [4, "Оптиканың геометриялық заңдары; толық ішкі шағылысу", "Тірек-сызба", "17I8130me9hkNVSMIJXArF1RpxV5hLH5j"], [4, "Шынының сыну көрсеткішін анықтау", "Жұмыс парағы", "1IQIzBdkdeYC80T1vhpC5C_5bsUy3IfSE"], [5, "Жарық табиғаты және электромагниттік сәулелену шкаласы", "Жұмыс парағы", "1UDnAw7xJJLg0Pg7dd_0JnDtaAyoahydG"], [5, "Спектрлік анализ", "Тірек-сызба", "1imuDP6f65Nae5c_YeWUj8D3-cx8A63qx"], [5, "Атом ядросының құрылымы", "Тірек-сызба", "1FAcglk7iBBodM-UKO64CaCV-dco_pdPX"], [5, "Атом ядросы; ядролық реакциялар", "Жұмыс парағы", "1oOkRj42sjexbupIVCYrHt36zhmp7wW4g"], [5, "Табиғи және жасанды радиоактивтілік; ыдырау заңы", "Тірек-сызба", "1lpzIJRv2pqY5ImXPZgb0vCMhUowkBZMv"], [5, "Радиоактивтілік; радиоактивті ыдырау заңы", "Тірек-сызба", "1W-GqtPqbDlUfAPHX_yfP0IIu5ZySMfNr"], [5, "Табиғи радиоактивтілік; радиоактивті ыдырау заңы", "Жұмыс парағы", "18C_uhfv2a8TXXm4RF7GocRfV8ezvhqSf"], [5, "Радиоактивті ыдырау заңы", "Жұмыс парағы", "1Ey6PKiEb2J4AeS9s_wd--SoRLtet3weh"], [5, "Радиациядан қорғау; ядролық реактор; термоядролық реакциялар", "Тірек-сызба", "1-C1RbYRd2BqIsGbfdgkhCWJQvxNOb4I8"], [5, "Наноматериалдарды дамытудың өзекті мәселелері", "Жұмыс парағы", "1o1h2djFXbPeZb6Ppo0gPEsJDu7bGpaQC"], [6, "Жұлдыздарға дейінгі қашықтық", "Тірек-сызба", "1ZgBEPomsjnvH0ZwSzXDKDfCwrhwv1tM6"], [6, "Айнымалы жұлдыздар", "Тірек-сызба", "1mPeUI15k9L52MEqQYLvIOZt4bwmjpDtz"], [6, "Біздің Галактика", "Тірек-сызба", "1u4rZklJwYM0-uQP9LARwKtgXy2DC2iZw"], [6, "Квазарлар", "Тірек-сызба", "1Rz6x5Kn3iLmnVidfrF1AHofl6EGUOEdF"], [6, "Ғаламның кеңеюі", "Тірек-сызба", "12jjpR6osKMAIbEJH9IkSQpurOSTPIlfL"], [6, "Ғаламдағы өмір мен ақыл", "Тірек-сызба", "1gvXDyvsDDYImplwzQUbSOV35SssuL6vj"], [6, "Жұлдыздар әлемі және Ғалам", "Жұмыс парағы", "1rttraMZgsl8OpntAIfgrz5pVKBs2JFO2"], [7, "Сабақ материалы", "Қосымша", "1ABiaTnbetC2bJJ-bkr-VRX8pcBRf7PAh"], [7, "Сабақ материалы", "Қосымша", "1PQEkfK_EC_oefgKNbibl7xOXj_yOpnZu"], [7, "Сабақ материалы", "Қосымша", "1Bg1T2fP9ptBVipdgLym1NUajmAraOFwi"], [7, "Сабақ материалы", "Қосымша", "11RJtCcphCcTEbqHzevUwQcY69K-32zVu"], [7, "Сабақ материалы", "Қосымша", "1EfGnqk_T-rGel305E5ak1NlK8SBd2-gm"], [7, "Сабақ материалы", "Қосымша", "1GhSxPla3TgLE4evjGD9y6LDmXCn99joZ"], [7, "Сабақ материалы", "Қосымша", "1DFeITVpe7QqyvLAoft7ZwIS7bbPaZVQ7"], [7, "Сабақ материалы", "Қосымша", "1eE67Uqi-1FcZsco-x0KgDx3aol4UkOJ-"], [7, "Сабақ материалы", "Қосымша", "1xsviohPHM4hNlOWUkc_YiM_jpBBaMvUS"], [7, "Сабақ материалы", "Қосымша", "1BnytQ7h4weMDlKQWS7tRwyttJPWLFwlz"], [7, "Сабақ материалы", "Қосымша", "1eD7VNUPQ8BZCCjr_ZB7eQxPAFEROAVw7"], [7, "Сабақ материалы", "Қосымша", "1jl9YLbMbrwSwKix4I-5dCfxUCLJ2DD9g"], [7, "Сабақ материалы", "Қосымша", "1asYFjiTzC76IBiMwT2K5KhOlhehnNfRp"], [7, "Сабақ материалы", "Қосымша", "1TTY2X52BxwuUqhTEr9llit47ChKSKDUX"], [7, "Сабақ материалы", "Қосымша", "1RruEFSKLBVBvOU2ecoGVMUZ_g9ylal3q"], [7, "Сабақ материалы", "Қосымша", "144p8A0GvphtsJep2CG7XdlVXf-FGUZQu"], [7, "Сабақ материалы", "Қосымша", "1UP2z5h64O8dP2qZjK3-_DcHJ0sstPY_R"], [7, "Сабақ материалы", "Қосымша", "1nP-jthFlNXspB7qT4VsXwSfAWxcFHR3g"], [7, "Сабақ материалы", "Қосымша", "1Xy0njzD-14M0ZVI43DaV0d3shpW54qHE"], [7, "Сабақ материалы", "Қосымша", "18mxD_RChLzznJ-u8chVqhoOJ13soGP6a"], [7, "Сабақ материалы", "Қосымша", "1qm6B1TxcG5VRnoAxsP3UdFlmwUHRssCF"], [7, "Сабақ материалы", "Қосымша", "1tjbauWYTWPhjTdGxIwrzs6_BrCd23PA2"], [7, "Сабақ материалы", "Қосымша", "1rs2cXKq0ptyWkZ-VXVDXqYWxZ-BVMGDo"], [7, "Сабақ материалы", "Қосымша", "1uzeGxSMZkFld9c0sN1a2kKtvo13DeKN_"], [7, "Сабақ материалы", "Қосымша", "1aIPtxokBJLvjlFUBT96Z-6zTdn9i_R4m"], [7, "Сабақ материалы", "Қосымша", "1s8-gz0SaD-lNU8mT6cEYz_uq6ZnrZ-RA"], [7, "Сабақ материалы", "Қосымша", "1fQYted1vO61Mq9PykfW1_gGG8ajhKUdi"], [7, "Сабақ материалы", "Қосымша", "1qd3OwqcG8feHvrio8j43foaUPRZ9dvlY"], [7, "Сабақ материалы", "Қосымша", "1dK_PWrPyNpdynDt72-Ax7Pn06l4W8w_6"], [7, "Сабақ материалы", "Қосымша", "1LRd1qNik2lsXKP295-Mp7_lz-EJQKkv1"], [7, "Сабақ материалы", "Қосымша", "1e45hFIomQelSijWPZ8laG6GiRVv9r9vk"]]}</script>
+<script>
+const D=JSON.parse(document.getElementById('d').textContent),$=s=>document.querySelector(s);
+const OTHER='Қосымша материалдар',names=[...D.M,OTHER];
+let view=null,mod=-1,q='';
+const hornBg="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 0 88 74"><path d="M0 40C0 18 18 6 34 12c12 5 14 22 3 27-8 3-15-4-12-11M80 40C80 18 62 6 46 12c-12 5-14 22-3 27 8 3 15-4 12-11M40 40V70" fill="none" stroke="#ffc53d" stroke-width="6" stroke-linecap="round"/></svg>');
+document.querySelectorAll('.band').forEach(b=>b.style.backgroundImage=`url("${hornBg}")`);
+$('#n-k').textContent=D.K.length+' сабақ жоспары, Word форматында';
+$('#n-m').textContent=D.P.length+' иллюстрация мен жұмыс парағы';
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const low=s=>s.toLocaleLowerCase('kk');
+function chips(){const used=view==='ksp'?D.M.length:names.length;
+$('#chips').innerHTML=[-1,...Array(used).keys()].map(i=>`<button type="button" class="chip" data-m="${i}" aria-pressed="${i===mod}">${esc(i<0?'Барлығы':names[i])}</button>`).join('')}
+function draw(){const list=(view==='ksp'?D.K:D.P).filter(x=>(mod<0||x[0]===mod)&&low(x[1]).includes(low(q)));
+if(!list.length){$('#out').innerHTML='<p class="none">Ештеңе табылмады. Басқа сөзбен іздеп көріңіз.</p>';return}
+let h='';names.forEach((n,i)=>{const g=list.filter(x=>x[0]===i);if(!g.length)return;
+h+=`<h2>${esc(n)}<span class="count">${g.length}</span></h2>`;
+if(view==='ksp')h+='<div class="rows">'+g.map(x=>`<div class="row"><p>${esc(x[1])}</p><a class="dl" href="https://drive.google.com/uc?export=download&id=${x[2]}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#down"/></svg>Word жүктеу</a></div>`).join('')+'</div>';
+else h+='<div class="grid">'+g.map(x=>`<a class="card" href="https://drive.google.com/file/d/${x[3]}/view" target="_blank" rel="noopener"><div class="thumb"><svg aria-hidden="true"><use href="#horn"/></svg><img loading="lazy" alt="${esc(x[1])}" src="https://drive.google.com/thumbnail?id=${x[3]}&sz=w640" onerror="this.remove()"></div><div class="meta"><small>${esc(x[2])}</small><strong>${esc(x[1])}</strong></div></a>`).join('')+'</div>'});
+$('#out').innerHTML=h}
+function open(v,scroll){view=v;mod=-1;$('#main').hidden=false;
+$('#go-ksp').setAttribute('aria-pressed',v==='ksp');$('#go-mat').setAttribute('aria-pressed',v==='materials');
+chips();draw();if(scroll)$('#main').scrollIntoView();try{history.replaceState(null,'','#'+v)}catch(e){location.hash=v}}
+$('#go-ksp').onclick=()=>open('ksp',1);$('#go-mat').onclick=()=>open('materials',1);
+$('#q').oninput=e=>{q=e.target.value.trim();draw()};
+$('#chips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;mod=+b.dataset.m;chips();draw()};
+const h=location.hash.slice(1);if(h==='ksp'||h==='materials')open(h,0);
+</script>
+</body></html>
